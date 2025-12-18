@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fitness_app/screens/workout/exercise_detail_screen.dart';
 import '../../models/workout_model.dart';
 
 class ExerciseListScreen extends StatelessWidget {
@@ -21,13 +22,21 @@ class ExerciseListScreen extends StatelessWidget {
               exercise.image,
               width: 50,
             ),
-            title: Text(exercise.name),
-            subtitle: Text(
-              "${exercise.duration} sec • ${exercise.calories} cal",
-            ),
+           title: Text(exercise.name),
+            subtitle: Text("${exercise.duration} sec • ${exercise.calories} cal"),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ExerciseDetailScreen(exercise: exercise),
+                ),
+              );
+        },
           );
         },
-      ),
+      )
     );
+    
   }
 }
