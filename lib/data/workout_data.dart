@@ -4,7 +4,7 @@ import '../models/exercise_model.dart';
 final List<Workout> workouts = [
   Workout(
     title: "Full Body",
-    image: "assets/images/fullbody.png",
+    image: "assets/images/fullbody2.png",
     exercises: [
       Exercise(
         name: "Jumping Jacks",

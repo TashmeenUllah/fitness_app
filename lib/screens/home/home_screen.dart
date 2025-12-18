@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/workout_data.dart';
+import '../../widgets/workout_card.dart';
+import '../workout/exercise_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,25 +22,17 @@ class HomeScreen extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           final workout = workouts[index];
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.green.shade100,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  workout.title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+          return WorkoutCard(
+            workout: workout,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      ExerciseListScreen(workout: workout),
                 ),
-                const SizedBox(height: 8),
-                Text("${workout.exercises.length} Exercises"),
-              ],
-            ),
+              );
+            },
           );
         },
       ),
