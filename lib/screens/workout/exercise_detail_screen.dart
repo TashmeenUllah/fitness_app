@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../models/exercise_model.dart';
+import 'package:flutter/services.dart';
 
 class ExerciseDetailScreen extends StatefulWidget {
   final Exercise exercise;
@@ -23,6 +24,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   }
 
  void startTimer() {
+  HapticFeedback.mediumImpact();
   if (timer != null) return; // Prevent multiple timers
   timer = Timer.periodic(const Duration(seconds: 1), (t) {
     if (!mounted) return; // prevent update after dispose
@@ -42,6 +44,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
 }
 
   void stopTimer() {
+    HapticFeedback.mediumImpact();
   timer?.cancel();
   timer = null;
   if (mounted) {
@@ -90,6 +93,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
+                  
                   onPressed: isRunning ? stopTimer : startTimer,
                   child: Text(isRunning ? "Pause" : "Start"),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fitness_app/screens/workout/full_workout_screen.dart';
 import '../../data/workout_data.dart';
 import '../../widgets/workout_card.dart';
 import '../workout/exercise_list_screen.dart';
@@ -22,18 +23,18 @@ class HomeScreen extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           final workout = workouts[index];
-          return WorkoutCard(
-            workout: workout,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>
-                      ExerciseListScreen(workout: workout),
-                ),
-              );
-            },
-          );
+         return WorkoutCard(
+  workout: workout,
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => FullWorkoutScreen(workout: workout),
+      ),
+    );
+  },
+);
+
         },
       ),
     );

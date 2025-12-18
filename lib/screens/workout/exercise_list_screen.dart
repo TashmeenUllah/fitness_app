@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fitness_app/screens/workout/exercise_detail_screen.dart';
 import '../../models/workout_model.dart';
 
+
+
 class ExerciseListScreen extends StatelessWidget {
   final Workout workout;
 
@@ -9,6 +11,7 @@ class ExerciseListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         title: Text(workout.title),
@@ -26,12 +29,25 @@ class ExerciseListScreen extends StatelessWidget {
             subtitle: Text("${exercise.duration} sec • ${exercise.calories} cal"),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ExerciseDetailScreen(exercise: exercise),
-                ),
-              );
+             Navigator.push(
+  context,
+  PageRouteBuilder(
+    pageBuilder: (_, __, ___) => ExerciseDetailScreen(exercise: exercise),
+    transitionsBuilder: (_, animation, __, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        ),
+      );
+    },
+  ),
+);
+
         },
           );
         },

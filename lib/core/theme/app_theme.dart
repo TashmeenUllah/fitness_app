@@ -9,5 +9,7 @@ class AppTheme {
       foregroundColor: Colors.white,
       centerTitle: true,
     ),
+    
   );
+  
 }
